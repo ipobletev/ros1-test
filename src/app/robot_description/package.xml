@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>mobile_manipulator</name>
+  <name>robot_description</name>
   <version>0.0.1</version>
   <description>
     A comprehensive example of a 4-wheeled mobile manipulator with navigation, 

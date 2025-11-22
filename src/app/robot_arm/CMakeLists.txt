@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(robot_arm_config)
+project(robot_arm)
 
 find_package(catkin REQUIRED)
 

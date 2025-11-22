@@ -16,11 +16,11 @@
 
   <!-- 2. Load the URDF into the ROS Parameter Server -->
   <param name="robot_description" 
-         command="$(find xacro)/xacro '$(find mobile_manipulator)/urdf/robot.xacro'"/>
+         command="$(find xacro)/xacro '$(find robot_description)/urdf/robot.xacro'"/>
 
   <!-- 3. Spawn the robot in Gazebo -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
-        args="-urdf -model mobile_manipulator -param robot_description"/>
+        args="-urdf -model robot -param robot_description"/>
 
   <!-- 4. Start Robot State Publisher -->
   <!-- This publishes the transforms (TF) between robot links -->
@@ -30,12 +30,12 @@
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
 
   <!-- 6. Start the Behavior Tree Node -->
-  <node name="behavior_tree" pkg="mobile_manipulator" type="simple_behavior_tree.py" output="screen"/>
+  <node name="behavior_tree" pkg="robot_description" type="simple_behavior_tree.py" output="screen"/>
 
   <!-- 
     NOTE: To add Navigation (move_base), you would uncomment the following:
     <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-      <rosparam file="$(find mobile_manipulator)/config/nav_params.yaml" command="load" />
+      <rosparam file="$(find robot_description)/config/nav_params.yaml" command="load" />
     </node>
   -->
 

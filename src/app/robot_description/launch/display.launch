@@ -5,9 +5,9 @@
     Use this to visualize the robot model in Rviz.
   -->
 
-  <arg name="model" default="$(find mobile_manipulator)/urdf/robot.xacro"/>
+  <arg name="model" default="$(find robot_description)/urdf/robot.xacro"/>
   <arg name="gui" default="true" />
-  <arg name="rvizconfig" default="$(find mobile_manipulator)/rviz/urdf.rviz" />
+  <arg name="rvizconfig" default="$(find robot_description)/rviz/urdf.rviz" />
 
   <param name="robot_description" command="$(find xacro)/xacro '$(arg model)'"/>
 
