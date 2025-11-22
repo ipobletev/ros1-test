@@ -12,11 +12,6 @@ find_package(catkin REQUIRED COMPONENTS
   nav_msgs
 )
 
-# Define the python script installation (for the behavior tree)
-catkin_install_python(PROGRAMS
-  scripts/simple_behavior_tree.py
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
 
 # Define the catkin package parameters
 catkin_package(
@@ -24,6 +19,12 @@ catkin_package(
 #  LIBRARIES mobile_manipulator
 #  CATKIN_DEPENDS roscpp rospy std_msgs
 #  DEPENDS system_lib
+)
+
+# Define the python script installation (for the behavior tree)
+catkin_install_python(PROGRAMS
+  scripts/simple_behavior_tree.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
 # Install directories (launch files, config, urdf, etc.)
