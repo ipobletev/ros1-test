@@ -1,0 +1,75 @@
+<launch>
+
+  <!-- 
+    GAZEBO + MOVEIT LAUNCH FILE
+    This launch file starts:
+    - Gazebo simulation environment
+    - Robot description and state publishers
+    - MoveIt motion planning
+  -->
+
+  <!-- Arguments -->
+  <arg name="paused" default="false"/>
+  <arg name="gui" default="true"/>
+  <arg name="debug" default="false"/>
+  <arg name="fake_execution" default="false"/>
+
+  <!-- ========================================== -->
+  <!-- 1. GAZEBO SIMULATION -->
+  <!-- ========================================== -->
+  
+  <!-- Start Gazebo with an empty world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!-- Load the URDF into the ROS Parameter Server -->
+  <param name="robot_description" 
+         command="$(find xacro)/xacro '$(find robot_description)/urdf/robot.xacro'"/>
+
+  <!-- Spawn the robot in Gazebo -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -model robot -param robot_description"/>
+
+  <!-- Start Robot State Publisher -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen"/>
+
+  <!-- Start Joint State Publisher -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="/use_gui" value="false"/>
+    <rosparam param="/source_list">[/move_group/fake_controller_joint_states]</rosparam>
+  </node>
+
+  <!-- ========================================== -->
+  <!-- 2. MOVEIT MOTION PLANNING -->
+  <!-- ========================================== -->
+
+  <!-- Load MoveIt planning context -->
+  <include file="$(find robot_arm)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="false"/>
+  </include>
+
+  <!-- Static transform for virtual joint -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="virtual_joint_broadcaster_0" 
+        args="0 0 0 0 0 0 odom robot_footprint" />
+
+  <!-- Run MoveIt move_group -->
+  <include file="$(find robot_arm)/launch/move_group.launch">
+    <arg name="allow_trajectory_execution" value="true"/>
+    <arg name="fake_execution" value="$(arg fake_execution)"/>
+    <arg name="info" value="true"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
+  <!-- ========================================== -->
+  <!-- 3. VISUALIZATION -->
+  <!-- ========================================== -->
+
+  <!-- RViz with MoveIt configuration -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_arm)/rviz/rviz_moveit.rviz" required="true" />
+
+</launch>
