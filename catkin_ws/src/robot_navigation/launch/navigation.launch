@@ -1,0 +1,69 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="map_file" default="$(find robot_navigation)/maps/map.yaml"/>
+  <arg name="open_rviz" default="true"/>
+  <arg name="move_forward_only" default="false"/>
+
+  <!-- Map Server -->
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+
+  <!-- AMCL -->
+  <!-- AMCL is used for localization. It takes laser scans and matches them to the map. -->
+  <node pkg="amcl" type="amcl" name="amcl">
+    <param name="min_particles"             value="500"/>
+    <param name="max_particles"             value="3000"/>
+    <param name="kld_err"                   value="0.02"/>
+    <param name="update_min_d"              value="0.20"/>
+    <param name="update_min_a"              value="0.20"/>
+    <param name="resample_interval"         value="1"/>
+    <param name="transform_tolerance"       value="0.5"/>
+    <param name="recovery_alpha_slow"       value="0.00"/>
+    <param name="recovery_alpha_fast"       value="0.00"/>
+    <param name="initial_pose_x"            value="0.0"/>
+    <param name="initial_pose_y"            value="0.0"/>
+    <param name="initial_pose_a"            value="0.0"/>
+    <param name="gui_publish_rate"          value="50.0"/>
+
+    <remap from="scan"                      to="scan"/>
+    <param name="laser_max_range"           value="3.5"/>
+    <param name="laser_max_beams"           value="180"/>
+    <param name="laser_z_hit"               value="0.5"/>
+    <param name="laser_z_short"             value="0.05"/>
+    <param name="laser_z_max"               value="0.05"/>
+    <param name="laser_z_rand"              value="0.5"/>
+    <param name="laser_sigma_hit"           value="0.2"/>
+    <param name="laser_lambda_short"        value="0.1"/>
+    <param name="laser_likelihood_max_dist" value="2.0"/>
+    <param name="laser_model_type"          value="likelihood_field"/>
+
+    <param name="odom_model_type"           value="diff"/>
+    <param name="odom_alpha1"               value="0.1"/>
+    <param name="odom_alpha2"               value="0.1"/>
+    <param name="odom_alpha3"               value="0.1"/>
+    <param name="odom_alpha4"               value="0.1"/>
+    <param name="odom_frame_id"             value="odom"/>
+    <param name="base_frame_id"             value="robot_footprint"/>
+  </node>
+
+  <!-- Move Base -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+    <rosparam file="$(find robot_navigation)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find robot_navigation)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find robot_navigation)/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find robot_navigation)/config/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find robot_navigation)/config/move_base_params.yaml" command="load" />
+    <rosparam file="$(find robot_navigation)/config/dwa_local_planner_params.yaml" command="load" />
+    
+    <remap from="cmd_vel" to="/cmd_vel"/>
+    <remap from="odom" to="/odom"/>
+    <param name="DWAPlannerROS/min_vel_x" value="0.0" if="$(arg move_forward_only)" />
+  </node>
+
+  <!-- Rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find robot_navigation)/rviz/navigation.rviz"/>
+  </group>
+
+</launch>

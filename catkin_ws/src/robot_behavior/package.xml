@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>robot_behavior</name>
+  <version>0.0.1</version>
+  <description>
+    Behavior Tree nodes and trees for controlling the mobile manipulator.
+    Includes actions for navigation (move_base) and arm control (MoveIt).
+  </description>
+
+  <maintainer email="student@example.com">Student</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>rospy</depend>
+  <depend>py_trees</depend>
+  <depend>py_trees_ros</depend>
+  <depend>actionlib</depend>
+  <depend>move_base_msgs</depend>
+  <depend>moveit_commander</depend>
+  <depend>geometry_msgs</depend>
+  <depend>std_msgs</depend>
+
+</package>

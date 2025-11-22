@@ -1,0 +1,16 @@
+# ROBOT FOOTPRINT
+# The shape of the robot. Used for collision checking.
+footprint: [[-0.25, -0.15], [-0.25, 0.15], [0.25, 0.15], [0.25, -0.15]]
+# robot_radius: 0.30 # Use this if the robot is circular
+
+# OBSTACLE LAYERS
+obstacle_range: 2.5 # Max distance to add obstacles to map
+raytrace_range: 3.0 # Max distance to clear obstacles from map
+
+inflation_radius: 0.55 # Buffer zone around obstacles
+cost_scaling_factor: 10.0
+
+# SENSOR SOURCES
+map_type: costmap
+observation_sources: scan
+scan: {sensor_frame: lidar_link, data_type: LaserScan, topic: /scan, marking: true, clearing: true}

@@ -1,0 +1,5 @@
+P2
+400 400
+255
+# This is a simple PGM image header for a 400x400 empty map
+# The data would follow here, but for a text file we just leave it blank/white

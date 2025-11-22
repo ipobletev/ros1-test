@@ -1,0 +1,42 @@
+<launch>
+
+  <!-- 
+    LAUNCH FILE: SIMULATION
+    This file starts the entire simulation environment.
+  -->
+
+  <!-- 1. Start Gazebo with an empty world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!-- 2. Load the URDF into the ROS Parameter Server -->
+  <param name="robot_description" 
+         command="$(find xacro)/xacro '$(find mobile_manipulator)/urdf/robot.xacro'"/>
+
+  <!-- 3. Spawn the robot in Gazebo -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -model mobile_manipulator -param robot_description"/>
+
+  <!-- 4. Start Robot State Publisher -->
+  <!-- This publishes the transforms (TF) between robot links -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+  <!-- 5. Start Joint State Publisher -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+
+  <!-- 6. Start the Behavior Tree Node -->
+  <node name="behavior_tree" pkg="mobile_manipulator" type="simple_behavior_tree.py" output="screen"/>
+
+  <!-- 
+    NOTE: To add Navigation (move_base), you would uncomment the following:
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+      <rosparam file="$(find mobile_manipulator)/config/nav_params.yaml" command="load" />
+    </node>
+  -->
+
+</launch>

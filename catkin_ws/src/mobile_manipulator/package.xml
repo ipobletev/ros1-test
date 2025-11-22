@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>mobile_manipulator</name>
+  <version>0.0.1</version>
+  <description>
+    A comprehensive example of a 4-wheeled mobile manipulator with navigation, 
+    perception, and behavior tree integration for ROS1.
+  </description>
+
+  <maintainer email="student@example.com">Student</maintainer>
+  <license>MIT</license>
+
+  <!-- Build tools -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Dependencies for the robot description and simulation -->
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>urdf</depend>
+  <depend>xacro</depend>
+  <depend>gazebo_ros</depend>
+  
+  <!-- Dependencies for navigation -->
+  <depend>move_base</depend>
+  <depend>amcl</depend>
+  <depend>nav_msgs</depend>
+
+  <!-- Dependencies for the arm (MoveIt) -->
+  <depend>moveit_core</depend>
+  <depend>moveit_ros_planning_interface</depend>
+
+  <!-- Dependencies for Behavior Trees -->
+  <depend>py_trees</depend>
+  <depend>py_trees_ros</depend>
+
+</package>
