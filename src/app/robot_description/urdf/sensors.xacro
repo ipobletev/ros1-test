@@ -47,5 +47,41 @@
       <origin xyz="0.25 0 0.05" rpy="0 0 0"/> <!-- Mounted at the very front -->
     </joint>
 
+    <!-- 
+      GAZEBO PLUGIN: LIDAR
+      This plugin makes the lidar sensor actually publish laser scan data in Gazebo.
+    -->
+    <gazebo reference="lidar_link">
+      <sensor type="ray" name="lidar_sensor">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>true</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>360</samples>
+              <resolution>1</resolution>
+              <min_angle>-3.14159</min_angle>
+              <max_angle>3.14159</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.1</min>
+            <max>10.0</max>
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </ray>
+        <plugin name="gazebo_ros_lidar_controller" filename="libgazebo_ros_laser.so">
+          <topicName>scan</topicName>
+          <frameName>lidar_link</frameName>
+        </plugin>
+      </sensor>
+    </gazebo>
+
   </xacro:macro>
 </robot>
