@@ -32,6 +32,6 @@
   </include>
 
   <!-- Run Rviz and load the default config to see the state of the move_group node -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_arm)/launch/moveit.rviz" required="true" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_arm)/rviz/rviz_moveit.rviz" required="true" />
 
 </launch>

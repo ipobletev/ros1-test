@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<robot name="mobile_manipulator">
+<robot name="robot_arm">
     <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
     <group name="arm">
         <joint name="shoulder_joint" />

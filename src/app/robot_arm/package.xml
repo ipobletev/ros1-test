@@ -17,6 +17,7 @@
   <depend>joint_state_publisher</depend>
   <depend>robot_state_publisher</depend>
   <depend>xacro</depend>
-  <depend>mobile_manipulator</depend>
+  <depend>robot_description</depend>
+  <depend>moveit_ros_move_group</depend>
 
 </package>

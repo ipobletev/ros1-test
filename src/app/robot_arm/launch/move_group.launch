@@ -33,7 +33,7 @@
 
   <!-- Sensors Functionality -->
   <include ns="move_group" file="$(find robot_arm)/launch/sensor_manager.launch.xml" if="$(arg allow_trajectory_execution)">
-    <arg name="moveit_sensor_manager" value="mobile_manipulator" />
+    <arg name="moveit_sensor_manager" value="robot_arm" />
   </include>
 
   <!-- Start the actual move_group node/action server -->
