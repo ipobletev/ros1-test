@@ -13,7 +13,7 @@ source /opt/ros/noetic/setup.bash && source devel/setup.bash
 ### Mobile Manipulator Package
 
 *   `roslaunch robot_description display.launch`: Visualizes the robot model in Rviz. Useful for checking the URDF model.
-*   `roslaunch robot_description simulation.launch`: Starts the full simulation environment in Gazebo. It spawns the robot, starts state publishers, and launches a behavior tree node.
+*   `roslaunch robot_description gazebo.launch`: Starts the full simulation environment in Gazebo. It spawns the robot, starts state publishers, and launches a behavior tree node.
 
 ### Robot Arm Config Package (MoveIt!)
 
