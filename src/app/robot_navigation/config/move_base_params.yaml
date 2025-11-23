@@ -10,3 +10,7 @@ oscillation_distance: 0.2
 # PLANNERS
 base_global_planner: "navfn/NavfnROS" # Standard Dijkstra/A*
 base_local_planner: "dwa_local_planner/DWAPlannerROS" # Dynamic Window Approach
+
+# RECOVERY BEHAVIORS
+recovery_behavior_enabled: true
+clearing_rotation_allowed: true

@@ -84,6 +84,11 @@
     <param name="odom_alpha4"               value="0.1"/>
     <param name="odom_frame_id"             value="odom"/>
     <param name="base_frame_id"             value="robot_footprint"/>
+    
+    <!-- Initial pose covariance for better localization -->
+    <param name="initial_cov_xx"            value="0.25"/>
+    <param name="initial_cov_yy"            value="0.25"/>
+    <param name="initial_cov_aa"            value="0.068"/>
   </node>
 
   <!-- Move Base for path planning and navigation -->
