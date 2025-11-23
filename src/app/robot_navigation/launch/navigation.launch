@@ -1,29 +1,55 @@
 <launch>
+
+  <!-- 
+    GAZEBO + NAVIGATION LAUNCH FILE
+    This launch file starts:
+    - Gazebo simulation environment
+    - Robot description and state publishers
+    - Navigation stack (AMCL + Move Base)
+  -->
+
   <!-- Arguments -->
   <arg name="map_file" default="$(find robot_navigation)/maps/map.yaml"/>
   <arg name="open_rviz" default="true"/>
+  <arg name="paused" default="false"/>
+  <arg name="gui" default="true"/>
   <arg name="move_forward_only" default="false"/>
 
-  <!-- Load the robot description -->
+  <!-- ========================================== -->
+  <!-- 1. GAZEBO SIMULATION -->
+  <!-- ========================================== -->
+  
+  <!-- Start Gazebo with an empty world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!-- Load the URDF into the ROS Parameter Server -->
   <param name="robot_description" 
          command="$(find xacro)/xacro '$(find robot_description)/urdf/robot.xacro'"/>
 
-  <!-- Robot State Publisher -->
-  <!-- Publishes TF transforms between robot links based on URDF and joint states -->
+  <!-- Spawn the robot in Gazebo -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -model robot -param robot_description"/>
+
+  <!-- Start Robot State Publisher -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
 
-  <!-- Joint State Publisher -->
-  <!-- Publishes joint states when not using Gazebo simulation -->
-  <!-- This will be overridden if joint states come from Gazebo or real hardware -->
-  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
-    <param name="use_gui" value="false"/>
-  </node>
+  <!-- Start Joint State Publisher -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+
+  <!-- ========================================== -->
+  <!-- 2. NAVIGATION STACK -->
+  <!-- ========================================== -->
 
   <!-- Map Server -->
   <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
 
-  <!-- AMCL -->
-  <!-- AMCL is used for localization. It takes laser scans and matches them to the map. -->
+  <!-- AMCL for localization -->
   <node pkg="amcl" type="amcl" name="amcl">
     <param name="min_particles"             value="500"/>
     <param name="max_particles"             value="3000"/>
@@ -58,9 +84,14 @@
     <param name="odom_alpha4"               value="0.1"/>
     <param name="odom_frame_id"             value="odom"/>
     <param name="base_frame_id"             value="robot_footprint"/>
+    
+    <!-- Initial pose covariance for better localization -->
+    <param name="initial_cov_xx"            value="0.25"/>
+    <param name="initial_cov_yy"            value="0.25"/>
+    <param name="initial_cov_aa"            value="0.068"/>
   </node>
 
-  <!-- Move Base -->
+  <!-- Move Base for path planning and navigation -->
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
     <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
     <rosparam file="$(find robot_navigation)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
@@ -75,7 +106,11 @@
     <param name="DWAPlannerROS/min_vel_x" value="0.0" if="$(arg move_forward_only)" />
   </node>
 
-  <!-- Rviz -->
+  <!-- ========================================== -->
+  <!-- 3. VISUALIZATION -->
+  <!-- ========================================== -->
+
+  <!-- RViz -->
   <group if="$(arg open_rviz)"> 
     <node pkg="rviz" type="rviz" name="rviz" required="true"
           args="-d $(find robot_navigation)/rviz/navigation.rviz"/>
