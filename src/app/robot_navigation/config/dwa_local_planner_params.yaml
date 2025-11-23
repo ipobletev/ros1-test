@@ -11,7 +11,7 @@ DWAPlannerROS:
   min_vel_trans: 0.05 # Reduced from 0.1 to allow slower movement
 
   max_vel_theta: 1.0
-  min_vel_theta: 0.2 # Reduced from 0.4 to allow slower rotations during recovery
+  min_vel_theta: 0.1 # Reduced from 0.2 to allow smoother final rotation
 
   acc_lim_x: 2.5
   acc_lim_y: 0.0
@@ -20,7 +20,7 @@ DWAPlannerROS:
 # Goal Tolerance Parameters
   xy_goal_tolerance: 0.15
   yaw_goal_tolerance: 0.1
-  latch_xy_goal_tolerance: false
+  latch_xy_goal_tolerance: true # Enable latching to rotate in place at goal
 
 # Forward Simulation Parameters
   sim_time: 1.7
