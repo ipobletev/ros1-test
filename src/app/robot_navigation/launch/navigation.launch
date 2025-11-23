@@ -4,6 +4,21 @@
   <arg name="open_rviz" default="true"/>
   <arg name="move_forward_only" default="false"/>
 
+  <!-- Load the robot description -->
+  <param name="robot_description" 
+         command="$(find xacro)/xacro '$(find robot_description)/urdf/robot.xacro'"/>
+
+  <!-- Robot State Publisher -->
+  <!-- Publishes TF transforms between robot links based on URDF and joint states -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+  <!-- Joint State Publisher -->
+  <!-- Publishes joint states when not using Gazebo simulation -->
+  <!-- This will be overridden if joint states come from Gazebo or real hardware -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="false"/>
+  </node>
+
   <!-- Map Server -->
   <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
 
