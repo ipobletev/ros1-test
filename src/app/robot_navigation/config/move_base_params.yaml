@@ -9,7 +9,8 @@ oscillation_distance: 0.2
 
 # PLANNERS
 # GLOBAL
-base_global_planner: "navfn/NavfnROS" # Standard Dijkstra/A*, use A* for better performance
+# base_global_planner: "navfn/NavfnROS" # Dijkstra algorithm for path planning
+base_global_planner: "global_planner/GlobalPlanner" # A* algorithm for optimal path planning
 
 # LOCAL
 #base_local_planner: "dwa_local_planner/DWAPlannerROS"
