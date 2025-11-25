@@ -8,8 +8,12 @@ oscillation_timeout: 10.0
 oscillation_distance: 0.2
 
 # PLANNERS
-base_global_planner: "navfn/NavfnROS" # Standard Dijkstra/A*
-base_local_planner: "dwa_local_planner/DWAPlannerROS" # Dynamic Window Approach
+# GLOBAL
+base_global_planner: "navfn/NavfnROS" # Standard Dijkstra/A*, use A* for better performance
+
+# LOCAL
+#base_local_planner: "dwa_local_planner/DWAPlannerROS"
+base_local_planner: "teb_local_planner/TebLocalPlannerROS" # Timed Elastic Band
 
 # RECOVERY BEHAVIORS
 recovery_behavior_enabled: true
