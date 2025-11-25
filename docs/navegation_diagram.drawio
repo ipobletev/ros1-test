@@ -1,5 +1,5 @@
-<mxfile host="Electron" modified="2025-11-25T19:59:37.804Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.5.1 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="SfGaX5KyBAfQiLOzggm6" version="24.5.1" type="device">
-  <diagram name="Página-1" id="2cow8ikpZ6OpDzt8oYoB">
+<mxfile host="Electron" modified="2025-11-25T20:01:59.873Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.5.1 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="CNzslKHBzd9-jB_9ilOe" version="24.5.1" type="device">
+  <diagram name="navigation.launch" id="2cow8ikpZ6OpDzt8oYoB">
     <mxGraphModel dx="497" dy="9989" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
@@ -554,6 +554,9 @@
         </mxCell>
         <mxCell id="wPul71eTD_SupcKaiVI--153" value="RVIZ&lt;br&gt;2D Nav Goal" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="6009" y="-7059.55" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wPul71eTD_SupcKaiVI--154" value="roslaunch robot_navigation navigation.launch" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=Helvetica;strokeWidth=1;fontSize=50;" vertex="1" parent="1">
+          <mxGeometry x="4014" y="-7350" width="1022" height="72" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
