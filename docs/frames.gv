@@ -1,0 +1,19 @@
+digraph G {
+"robot_chassis" -> "arm_base_link"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"robot_footprint" -> "robot_chassis"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"robot_chassis" -> "camera_link"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"robot_chassis" -> "lidar_link"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"odom" -> "robot_footprint"[label=" Broadcaster: /gazebo\nAverage rate: 100.201\nBuffer length: 4.98\nMost recent transform: 417.814\nOldest transform: 412.834\n"];
+"map" -> "odom"[label=" Broadcaster: /amcl\nAverage rate: 10.204\nBuffer length: 4.9\nMost recent transform: 418.237\nOldest transform: 413.337\n"];
+"arm_link_1" -> "arm_link_2"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10.204\nBuffer length: 4.9\nMost recent transform: 417.8\nOldest transform: 412.9\n"];
+"arm_base_link" -> "arm_link_1"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10.204\nBuffer length: 4.9\nMost recent transform: 417.8\nOldest transform: 412.9\n"];
+"robot_chassis" -> "front_left_wheel"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10.204\nBuffer length: 4.9\nMost recent transform: 417.8\nOldest transform: 412.9\n"];
+"robot_chassis" -> "front_right_wheel"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10.204\nBuffer length: 4.9\nMost recent transform: 417.8\nOldest transform: 412.9\n"];
+"robot_chassis" -> "rear_left_wheel"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10.204\nBuffer length: 4.9\nMost recent transform: 417.8\nOldest transform: 412.9\n"];
+"robot_chassis" -> "rear_right_wheel"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10.204\nBuffer length: 4.9\nMost recent transform: 417.8\nOldest transform: 412.9\n"];
+"arm_link_2" -> "gripper_link"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10.204\nBuffer length: 4.9\nMost recent transform: 417.8\nOldest transform: 412.9\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 417.826"[ shape=plaintext ] ;
+}->"map";
+}
