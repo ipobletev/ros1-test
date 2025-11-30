@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>robot_mobile_description</name>
+  <version>0.0.1</version>
+  <description>
+    A comprehensive example of a 4-wheeled mobile robot with navigation for ROS1.
+  </description>
+
+  <maintainer email="ismael.pbt@gmail.com">Ismael Poblete</maintainer>
+  <license>MIT</license>
+
+  <!-- Build tools -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Dependencies for the robot description and simulation -->
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>urdf</depend>
+  <depend>xacro</depend>
+  <depend>gazebo_ros</depend>
+  
+  <!-- Dependencies for navigation -->
+  <depend>move_base</depend>
+  <depend>amcl</depend>
+  <depend>nav_msgs</depend>
+
+  <!-- Dependencies for Behavior Trees -->
+  <depend>py_trees</depend>
+  <depend>py_trees_ros</depend>
+
+</package>
