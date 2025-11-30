@@ -7,7 +7,7 @@
     (move_base, amcl, map_server).
   </description>
 
-  <maintainer email="student@example.com">Student</maintainer>
+  <maintainer email="ismael.pbt@gmail.com">Ismael Poblete</maintainer>
   <license>MIT</license>
 
   <buildtool_depend>catkin</buildtool_depend>

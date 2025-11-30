@@ -6,8 +6,7 @@
     Behavior Tree nodes and trees for controlling the mobile manipulator.
     Includes actions for navigation (move_base) and arm control (MoveIt).
   </description>
-
-  <maintainer email="student@example.com">Student</maintainer>
+  <maintainer email="ismael.pbt@gmail.com">Ismael Poblete</maintainer>
   <license>MIT</license>
 
   <buildtool_depend>catkin</buildtool_depend>

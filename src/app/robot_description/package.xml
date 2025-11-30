@@ -7,7 +7,7 @@
     perception, and behavior tree integration for ROS1.
   </description>
 
-  <maintainer email="student@example.com">Student</maintainer>
+  <maintainer email="ismael.pbt@gmail.com">Ismael Poblete</maintainer>
   <license>MIT</license>
 
   <!-- Build tools -->
