@@ -75,6 +75,9 @@
     <arg name="fake_execution_type" value="$(arg fake_execution_type)" />
   </include>
 
+  <!-- Remap joint_states topic -->
+  <remap from="/joint_states" to="/robot_arm/joint_states"/>
+
   <!-- Sensors Functionality -->
   <include ns="move_group" file="$(dirname)/sensor_manager.launch.xml" if="$(arg allow_trajectory_execution)">
     <arg name="moveit_sensor_manager" value="robot_arm" />

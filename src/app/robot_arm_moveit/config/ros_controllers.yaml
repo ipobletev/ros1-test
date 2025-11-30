@@ -30,3 +30,19 @@ robot_arm_gripper_controller:
       d: 1
       i: 1
       i_clamp: 1
+
+controller_list:
+  - name: /robot_arm/robot_arm_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - joint_1
+      - joint_2
+      - joint_3
+  - name: /robot_arm/robot_arm_gripper_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - joint_4
