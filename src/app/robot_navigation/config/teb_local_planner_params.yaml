@@ -1,4 +1,7 @@
 TebLocalPlannerROS:
+  footprint_model:
+   type: "linear"
+   vertices: [[-0.32, -0.22], [-0.32, 0.22], [0.32, 0.22], [0.32, -0.22]]
 
 # Trajectory Configuration
   teb_autosize: True
@@ -12,7 +15,7 @@ TebLocalPlannerROS:
   global_plan_prune_distance: 1
   exact_arc_length: False
   feasibility_check_no_poses: 5
-  publish_feedback: False
+  publish_feedback: True
     
 # Robot Configuration Parameters
   max_vel_x: 0.5

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(robot_description)
+project(robot_base_description)
 
 # Find the catkin build system and other required ROS packages
 find_package(catkin REQUIRED COMPONENTS
@@ -16,7 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
 # Define the catkin package parameters
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES robot_description
+#  LIBRARIES robot_base_description
 #  CATKIN_DEPENDS roscpp rospy std_msgs
 #  DEPENDS system_lib
 )
